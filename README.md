@@ -52,19 +52,26 @@ Buka file `Scrapping_x.py` (atau nama file utama Anda) dan ubah nilai variabel d
 # --- KONFIGURASI ---
 # 1. TEMPEL NILAI `auth_token` ANDA DI SINI
 AUTH_TOKEN_COOKIE = "tempel_nilai_auth_token_anda_di_sini"
-
-# 2. Ubah kata kunci pencarian
-SEARCH_QUERY = "prabowo subianto"
-
-# 3. Atur jumlah scroll yang diinginkan
-SCROLL_COUNT = 10
 ```
+
 Langkah 3: Jalankan Script
-Kembali ke terminal atau command prompt Anda, lalu jalankan script: 
+Kembali ke terminal atau command prompt Anda: 
+1. Kembali ke terminal atau command prompt Anda, lalu jalankan skrip:
 ```bash
 python Scrapping_x.py
 ```
-Script akan memulai prosesnya, dan jika berhasil, Anda akan menemukan file tweets.csv di folder yang sama.
+2. Skrip akan meminta Anda untuk memasukkan detail pencarian satu per satu. Contoh:
+```bash
+1. Masukkan kata kunci/topik pencarian: Anies Baswedan
+2. Berapa jumlah tweet yang ingin diambil? 50
+3. Masukkan tanggal mulai (YYYY-MM-DD): 2024-01-01
+4. Masukkan tanggal selesai (YYYY-MM-DD): 2024-05-30
+5. Masukkan kode bahasa (misal: 'id' untuk Indonesia, 'en' untuk Inggris): id
+```
+
+3. Setelah Anda mengisi semua input, skrip akan memulai proses scraping. Jika berhasil, Anda akan menemukan file `.csv` (contoh: `tweets_AniesBaswedan.csv`) di folder yang sama.
+Script akan memulai prosesnya, dan jika berhasil, Anda akan menemukan file `tweets_(search kalian).csv` di folder yang sama.
+
 # ☁️ Penggunaan di Google Colab
 Jika Anda menggunakan Google Colab, Anda perlu menjalankan beberapa perintah instalasi di sel pertama sebelum menjalankan script utama.Sel 
 
@@ -85,9 +92,10 @@ Jika Anda menggunakan Google Colab, Anda perlu menjalankan beberapa perintah ins
 # Jika ada error dependensi, jalankan perintah ini untuk memperbaikinya
 !apt-get install -f
 ```
-Sel 2: Jalankan Script ScraperSetelah sel di atas selesai, Anda bisa menjalankan sel yang berisi kode Python scraper Anda. Script sudah dikonfigurasi untuk berjalan di lingkungan server seperti Colab.
+# 2: Jalankan Script Scraper 
+Setelah sel di atas selesai, Anda bisa menjalankan sel yang berisi kode Python scraper Anda. Pastikan Anda telah mengisi `AUTH_TOKEN_COOKIE` di dalam kode. Skrip sudah dikonfigurasi untuk berjalan di lingkungan server seperti Colab.
 
-⚠️ Disclaimer Script ini dibuat untuk tujuan edukasi dan penelitian. 
-- Gunakan dengan bijak dan etis.
-- Platform X secara aktif mencegah scraping. Script ini bisa berhenti bekerja kapan saja jika X mengubah struktur HTML situsnya. Jika itu terjadi, selector XPath di dalam kode mungkin perlu diperbarui.
+⚠️ Disclaimer Script ini. 
+- Skrip ini dibuat untuk tujuan edukasi dan penelitian. Gunakan dengan bijak dan etis.
+- Platform X secara aktif mencegah scraping. Skrip ini bisa berhenti bekerja kapan saja jika X mengubah struktur HTML situsnya. Jika itu terjadi, selector XPath di dalam kode mungkin perlu diperbarui.
 - Melakukan scraping secara berlebihan dapat menyebabkan akun Anda dibatasi sementara atau diblokir.
