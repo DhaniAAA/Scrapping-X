@@ -1,101 +1,101 @@
-# X / Twitter Scraper dengan Selenium 
-Script Python ini dirancang untuk melakukan scraping (pengambilan data) tweet dari platform X (sebelumnya Twitter) berdasarkan kata kunci pencarian. Script ini menggunakan Selenium untuk mengotomatisasi browser dan meniru perilaku pengguna, sehingga tidak memerlukan akses API resmi X.
+# X / Twitter Scraper with Selenium
+This Python script is designed to scrape tweets from the X platform (formerly Twitter) based on search keywords. The script uses Selenium to automate the browser and mimic user behavior, so it does not require official X API access.
 
-Untuk melewati halaman login yang sering muncul, script ini menggunakan metode injeksi cookie autentikasi `(auth_token)`.
+To bypass the frequently appearing login page, this script uses the authentication cookie injection method `(auth_token)`.
 
-# ✨ Fitur
-* Pencarian Berbasis Kata Kunci: Mengambil tweet berdasarkan query pencarian apa pun.
-* Login dengan Cookie: Melewati halaman login X dengan menyuntikkan auth_token Anda, membuat proses scraping lebih andal.
-* Scroll Otomatis: Secara otomatis melakukan scroll ke bawah untuk memuat lebih banyak tweet.
-* Ekspor ke CSV: Menyimpan semua data yang berhasil diambil ke dalam sebuah file .csv yang rapi, berisi kolom: `username`, `handle`, `timestamp`, `tweet_text`, `url`, `reply_count`, `retweet_count`, dan `like_count`.
-* Kompatibel dengan Google Colab: Dilengkapi panduan untuk berjalan di lingkungan Google Colab.
+# ✨ Features
+* Keyword-Based Search: Retrieves tweets based on any search query.
+* Login with Cookies: Bypasses the X login page by injecting your auth_token, making the scraping process more reliable.
+* Automatic Scrolling: Automatically scrolls down to load more tweets.
+* Export to CSV: Saves all successfully retrieved data into a neat .csv file containing columns: `username`, `handle`, `timestamp`, `tweet_text`, `url`, `reply_count`, `retweet_count`, and `like_count`.
+* Compatible with Google Colab: Includes a guide for running in the Google Colab environment.
 
-# ⚙️ Kebutuhan
-- Python 3.8 atau lebih baru.
-- Browser Google Chrome terpasang di komputer Anda (kecuali jika menggunakan Google Colab). `pip` untuk instalasi paket Python.
+# ⚙️ Requirements
+- Python 3.8 or newer.
+- Google Chrome browser installed on your computer (unless using Google Colab). `pip` for Python package installation.
 
-# 🚀 Instalasi & Persiapan
+# 🚀 Installation & Preparation
 
-Clone Repositori Ini 
+Clone This Repository 
 ```bash
 https://github.com/DhaniAAA/Scrapping-X.git
-cd NAMA_REPO_ANDA
+cd YOUR_REPO_NAME
 ```
 
-Install Paket Python yang Dibutuhkan
-Buka terminal atau command prompt di folder proyek, lalu jalankan perintah berikut:
+Install Required Python Packages
+Open the terminal or command prompt in the project folder, then run the following command:
 ```bash
 pip install -r requirements.txt
 ```
-(Pastikan Anda membuat file `requirements.txt` yang berisi `pandas`, `selenium`, dan `webdriver-manager`)
+(Ensure you create a `requirements.txt` file containing `pandas`, `selenium`, and `webdriver-manager`)
 
-# 📝 Cara Menggunakan
-Proses penggunaan script ini terdiri dari tiga langkah utama:
+# 📝 How to Use
+The process of using this script consists of three main steps:
 
-Langkah 1: Dapatkan Cookie `auth_token` Anda
-Ini adalah langkah paling penting untuk memastikan script bisa "login" ke X.
+Step 1: Obtain Your `auth_token` Cookie
+This is the most important step to ensure the script can “log in” to X.
 
-1. Buka X.com di Browser: Gunakan Google Chrome, buka x.com dan login ke akun Anda.Buka 
-2. Developer Tools: Tekan F12 pada keyboard Anda atau klik kanan di mana saja lalu pilih Inspect.
-3. Cari Cookie: 
-   - Di panel Developer Tools, klik tab Application.
-   - Pada menu kiri, di bawah "Storage", buka Cookies -> https://x.com.
-   - Cari cookie dengan nama persis auth_token.
-4. Salin Nilainya: Klik pada baris auth_token dan salin (copy) seluruh teks panjang yang ada di kolom "Cookie Value".
+1. Open X.com in your browser: Use Google Chrome, open x.com, and log in to your account.
+2. Developer Tools: Press F12 on your keyboard or right-click anywhere and select Inspect.
+3. Find the cookie: 
+   - In the Developer Tools panel, click the Application tab.
+   - In the left menu, under “Storage,” open Cookies -> https://x.com.
+   - Look for the cookie with the exact name auth_token.
+4. Copy the Value: Click on the auth_token row and copy the entire long text in the “Cookie Value” column.
 
-**PERINGATAN KERAS**: Nilai auth_token Anda adalah **RAHASIA**, sama seperti kata sandi. Siapa pun yang memilikinya bisa mendapatkan akses ke akun X Anda. JANGAN PERNAH membagikan kode atau file Anda kepada siapa pun jika token ini masih ada di dalamnya.
+**STRONG WARNING**: Your auth_token value is **SECRET**, just like a password. Anyone who has it can gain access to your X account. NEVER share your code or files with anyone if this token is still in them.
 
-Langkah 2: Konfigurasi Script
+Step 2: Configure the Script
 
-Buka file `Scrapping_x.py` (atau nama file utama Anda) dan ubah nilai variabel di bagian atas:
+Open the `Scrapping_x.py` file (or your main file name) and change the variable values at the top:
 ```bash
-# --- KONFIGURASI ---
-# 1. TEMPEL NILAI `auth_token` ANDA DI SINI
-AUTH_TOKEN_COOKIE = "tempel_nilai_auth_token_anda_di_sini"
+# --- CONFIGURATION ---
+# 1. PASTE YOUR `auth_token` VALUE HERE
+AUTH_TOKEN_COOKIE = “paste_your_auth_token_value_here”
 ```
 
-Langkah 3: Jalankan Script
-Kembali ke terminal atau command prompt Anda: 
-1. Kembali ke terminal atau command prompt Anda, lalu jalankan skrip:
+Step 3: Run the Script
+Return to your terminal or command prompt: 
+1. Return to your terminal or command prompt, then run the script:
 ```bash
 python Scrapping_x.py
 ```
-2. Skrip akan meminta Anda untuk memasukkan detail pencarian satu per satu. Contoh:
+2. The script will prompt you to enter search details one by one. Example:
 ```bash
-1. Masukkan kata kunci/topik pencarian: Anies Baswedan
-2. Berapa jumlah tweet yang ingin diambil? 50
-3. Masukkan tanggal mulai (YYYY-MM-DD): 2024-01-01
-4. Masukkan tanggal selesai (YYYY-MM-DD): 2024-05-30
-5. Masukkan kode bahasa (misal: 'id' untuk Indonesia, 'en' untuk Inggris): id
+1. Enter the search keyword/topic: Anies Baswedan
+2. How many tweets do you want to retrieve? 50
+3. Enter the start date (YYYY-MM-DD): 2024-01-01
+4. Enter the end date (YYYY-MM-DD): 2024-05-30
+5. Enter the language code (e.g., ‘id’ for Indonesian, ‘en’ for English): id
 ```
 
-3. Setelah Anda mengisi semua input, skrip akan memulai proses scraping. Jika berhasil, Anda akan menemukan file `.csv` (contoh: `tweets_AniesBaswedan.csv`) di folder yang sama.
-Script akan memulai prosesnya, dan jika berhasil, Anda akan menemukan file `tweets_(search kalian).csv` di folder yang sama.
+3. After you have filled in all the inputs, the script will start the scraping process. If successful, you will find a `.csv` file (example: `tweets_AniesBaswedan.csv`) in the same folder.
+The script will start the process, and if successful, you will find a `tweets_(your search).csv` file in the same folder.
 
-# ☁️ Penggunaan di Google Colab
-Jika Anda menggunakan Google Colab, Anda perlu menjalankan beberapa perintah instalasi di sel pertama sebelum menjalankan script utama.Sel 
+# ☁️ Usage in Google Colab
+If you are using Google Colab, you need to run some installation commands in the first cell before running the main script. Cell
 
-# 1. Instalasi Dependensi# Install library Python
+# 1. Installing Dependencies# Install Python libraries
 
 ```bash
 !pip install selenium pandas webdriver-manager
 ```
-# Download dan install Google Chrome untuk lingkungan Colab
+# Download and install Google Chrome for the Colab environment
 ```bash
-# Install library Python yang dibutuhkan
+# Install required Python libraries
 !pip install selenium pandas webdriver-manager
 
-# Download dan install Google Chrome
+# Download and install Google Chrome
 !wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 !dpkg -i google-chrome-stable_current_amd64.deb
 
-# Jika ada error dependensi, jalankan perintah ini untuk memperbaikinya
+# If there are dependency errors, run this command to fix them
 !apt-get install -f
 ```
-# 2: Jalankan Script Scraper 
-Setelah sel di atas selesai, Anda bisa menjalankan sel yang berisi kode Python scraper Anda. Pastikan Anda telah mengisi `AUTH_TOKEN_COOKIE` di dalam kode. Skrip sudah dikonfigurasi untuk berjalan di lingkungan server seperti Colab.
+# 2: Run the Scraper Script 
+Once the above cell is complete, you can run the cell containing your Python scraper code. Make sure you have filled in `AUTH_TOKEN_COOKIE` in the code. The script is configured to run in a server environment such as Colab.
 
-⚠️ Disclaimer Script ini. 
-- Skrip ini dibuat untuk tujuan edukasi dan penelitian. Gunakan dengan bijak dan etis.
-- Platform X secara aktif mencegah scraping. Skrip ini bisa berhenti bekerja kapan saja jika X mengubah struktur HTML situsnya. Jika itu terjadi, selector XPath di dalam kode mungkin perlu diperbarui.
-- Melakukan scraping secara berlebihan dapat menyebabkan akun Anda dibatasi sementara atau diblokir.
+⚠️ Disclaimer for this script. 
+- This script is created for educational and research purposes. Use it wisely and ethically.
+- Platform X actively prevents scraping. This script may stop working at any time if X changes the HTML structure of its site. If that happens, the XPath selectors in the code may need to be updated.
+- Excessive scraping may result in your account being temporarily restricted or blocked.
