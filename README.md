@@ -62,11 +62,23 @@ python Scrapping_x.py
 ```
 2. The script will prompt you to enter search details one by one. Example:
 ```bash
-1. Enter the search keyword/topic: Anies Baswedan
-2. How many tweets do you want to retrieve? 50
-3. Enter the start date (YYYY-MM-DD): 2024-01-01
-4. Enter the end date (YYYY-MM-DD): 2024-05-30
-5. Enter the language code (e.g., ‘id’ for Indonesian, ‘en’ for English): id
+#English
+1. Enter the keyword/search topic: anies
+2. What is the MAXIMUM number of tweets you want to retrieve PER SESSION? 100
+3. Enter the OVERALL START DATE (YYYY-MM-DD): 2025-05-01
+4. Enter the OVERALL END DATE (YYYY-MM-DD): 2025-06-01
+5. How many days should the scraping session interval be? (e.g., 1 for per day): 3
+6. Enter the language code (e.g., 'id' for Indonesian, 'en' for English): id
+7. Select the tweet type (1 for Top, 2 for Newest): 1
+
+#Indonesia
+1. Masukkan kata kunci/topik pencarian: anies
+2. Berapa jumlah MAKSIMAL tweet yang ingin diambil PER SESI? 100
+3. Masukkan TANGGAL MULAI KESELURUHAN (YYYY-MM-DD): 2025-05-01
+4. Masukkan TANGGAL SELESAI KESELURUHAN (YYYY-MM-DD): 2025-06-01
+5. Berapa hari interval per sesi scraping? (misal: 1 untuk per hari): 3
+6. Masukkan kode bahasa (misal: 'id' untuk Indonesia, 'en' untuk Inggris): id
+7. Pilih jenis tweet (1 untuk Top, 2 untuk Terbaru): 1
 ```
 
 3. After you have filled in all the inputs, the script will start the scraping process. If successful, you will find a `.csv` file (example: `tweets_AniesBaswedan.csv`) in the same folder.
