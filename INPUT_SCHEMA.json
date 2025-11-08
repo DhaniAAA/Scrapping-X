@@ -1,0 +1,65 @@
+{
+    "title": "X Scraper Actor",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "authTokenCookie": {
+            "title": "X.com auth_token",
+            "type": "string",
+            "description": "Cookie 'auth_token' Anda. WAJIB DIISI. Baca README untuk cara mendapatkannya.",
+            "isSecret": true
+        },
+        "keyword": {
+            "title": "Keyword Pencarian",
+            "type": "string",
+            "description": "Kata kunci atau topik yang ingin dicari.",
+            "default": "prabowo"
+        },
+        "targetPerSession": {
+            "title": "Target Tweet per Sesi",
+            "type": "integer",
+            "description": "Jumlah maksimal tweet yang akan diambil per interval tanggal.",
+            "default": 100
+        },
+        "startDate": {
+            "title": "Tanggal Mulai (YYYY-MM-DD)",
+            "type": "string",
+            "description": "Format: YYYY-MM-DD",
+            "default": "2025-05-01"
+        },
+        "endDate": {
+            "title": "Tanggal Selesai (YYYY-MM-DD)",
+            "type": "string",
+            "description": "Format: YYYY-MM-DD",
+            "default": "2025-05-02"
+        },
+        "intervalDays": {
+            "title": "Interval Sesi (hari)",
+            "type": "integer",
+            "description": "Berapa hari per sesi scraping (misal: 1 untuk per hari).",
+            "default": 1
+        },
+        "language": {
+            "title": "Kode Bahasa",
+            "type": "string",
+            "description": "misal: 'id' untuk Indonesia, 'en' untuk Inggris.",
+            "default": "id"
+        },
+        "searchType": {
+            "title": "Tipe Pencarian",
+            "type": "string",
+            "description": "Pilih 'top' untuk tweet teratas atau 'latest' untuk tweet terbaru.",
+            "enum": [
+                "top",
+                "latest"
+            ],
+            "default": "top"
+        }
+    },
+    "required": [
+        "authTokenCookie",
+        "keyword",
+        "startDate",
+        "endDate"
+    ]
+}
