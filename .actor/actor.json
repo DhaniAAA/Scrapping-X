@@ -1,0 +1,72 @@
+{
+    "actorSpecification": 1,
+    "name": "x-scraper",
+    "title": "X (Twitter) Scraper",
+    "description": "Scrapes tweets from X.com based on keywords, date ranges, and language filters",
+    "version": "1.0.0",
+    "meta": {
+        "templateId": "python-selenium"
+    },
+    "input": "./.actor/INPUT_SCHEMA.json",
+    "dockerfile": "./Dockerfile",
+    "readme": "./README.md",
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "views": {
+                "overview": {
+                    "title": "Overview",
+                    "transformation": {
+                        "fields": [
+                            "username",
+                            "handle",
+                            "timestamp",
+                            "tweet_text",
+                            "url",
+                            "reply_count",
+                            "retweet_count",
+                            "like_count"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "username": {
+                                "label": "Username",
+                                "format": "text"
+                            },
+                            "handle": {
+                                "label": "Handle",
+                                "format": "text"
+                            },
+                            "timestamp": {
+                                "label": "Timestamp",
+                                "format": "date"
+                            },
+                            "tweet_text": {
+                                "label": "Tweet",
+                                "format": "text"
+                            },
+                            "url": {
+                                "label": "URL",
+                                "format": "link"
+                            },
+                            "reply_count": {
+                                "label": "Replies",
+                                "format": "number"
+                            },
+                            "retweet_count": {
+                                "label": "Retweets",
+                                "format": "number"
+                            },
+                            "like_count": {
+                                "label": "Likes",
+                                "format": "number"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

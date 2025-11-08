@@ -1,12 +1,24 @@
 # File: Dockerfile
-FROM apify/actor-python-selenium:python-3.11
+# Use official Apify Python base image
+FROM apify/actor-python:3.11
 
-# Salin file dependensi dan instal
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Install system dependencies for Selenium and Chrome
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
 
-# Salin sisa kode Anda
-COPY . .
+# Copy requirements and install Python dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Jalankan main.py saat container dimulai
-CMD ["python", "main.py"]
+# Copy source code
+COPY . ./
+
+# Run the main script
+CMD python main.py

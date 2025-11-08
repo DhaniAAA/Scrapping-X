@@ -45,17 +45,18 @@ async def scrape_tweets(driver, query, target_count, search_type):
         for tweet in tweet_articles:
             try:
                 tweet_url_elements = tweet.find_elements(By.XPATH, ".//a[contains(@href, '/status/')]")
+
                 tweet_url = tweet_url_elements[0].get_attribute('href') if tweet_url_elements else None
 
                 if tweet_url and tweet_url not in tweets_data:
-                    # ... (logika parsing Anda tetap sama)
-                    username = ...
-                    handle = ...
-                    timestamp = ...
-                    tweet_text = ...
-                    reply_count = ...
-                    retweet_count = ...
-                    like_count = ...
+                    # Parse tweet data
+                    username = tweet.find_element(By.XPATH, ".//div[@data-testid='User-Name']//span").text
+                    handle = tweet.find_element(By.XPATH, ".//span[contains(text(), '@')]").text
+                    timestamp = tweet.find_element(By.XPATH, ".//time").get_attribute('datetime')
+                    tweet_text = tweet.find_element(By.XPATH, ".//div[@data-testid='tweetText']").text.replace('\n', ' ')
+                    reply_count = tweet.find_element(By.XPATH, ".//button[@data-testid='reply']").text or "0"
+                    retweet_count = tweet.find_element(By.XPATH, ".//button[@data-testid='retweet']").text or "0"
+                    like_count = tweet.find_element(By.XPATH, ".//button[@data-testid='like']").text or "0"
 
                     tweet_item = {
                         "username": username, "handle": handle, "timestamp": timestamp,
@@ -179,3 +180,6 @@ async def main():
             if driver:
                 print("\nMenutup browser...")
                 driver.quit()
+
+if __name__ == "__main__":
+    asyncio.run(main())
