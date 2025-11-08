@@ -1,5 +1,5 @@
 # File: Dockerfile
-FROM apify/actor-python:3.11-selenium-chrome
+FROM apify/actor-python-selenium:latest
 # Salin file dependensi dan instal
 COPY requirements.txt .
 RUN pip install -r requirements.txt
