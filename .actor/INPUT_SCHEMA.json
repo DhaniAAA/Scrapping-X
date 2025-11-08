@@ -6,7 +6,7 @@
         "authTokenCookie": {
             "title": "X.com auth_token",
             "type": "string",
-            "description": "Cookie 'auth_token' Anda. WAJIB DIISI.",
+            "description": "Cookie 'auth_token' Anda. WAJIB DIISI. Developer Tools panel, click the Application tab, In the left menu, under “Storage,” open Cookies -> https: //x.com. Look for the cookie with the exact name auth_token.",
             "editor": "textfield",
             "isSecret": true
         },
