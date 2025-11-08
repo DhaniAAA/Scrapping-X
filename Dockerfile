@@ -1,7 +1,6 @@
 # File: Dockerfile
-FROM apify/actor-python-selenium:latest
+FROM apify/actor-python-selenium:py-3.11
 
-RUN apt-get update && apt-get install -y build-essential
 
 # Salin file dependensi dan instal
 COPY requirements.txt .
