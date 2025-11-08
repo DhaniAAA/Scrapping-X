@@ -1,6 +1,5 @@
 # File: Dockerfile
-FROM apify/actor-python-selenium:py-3.11
-
+FROM apify/actor-python-selenium:python-3.11
 
 # Salin file dependensi dan instal
 COPY requirements.txt .
